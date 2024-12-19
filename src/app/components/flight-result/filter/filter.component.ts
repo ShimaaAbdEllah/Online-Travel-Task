@@ -20,8 +20,8 @@ export class FilterComponent implements OnInit {
   maxPrice: number = 10000000;
 
   constructor(
-    public FlightService: FlightService, // Service for flight data
-    public LanguageService: LanguageService // Service for handling language changes
+    public FlightService: FlightService, 
+    public LanguageService: LanguageService 
   ) {}
 
   // Lifecycle hook to initialize the component

@@ -26,7 +26,7 @@ export class SelectedFlightComponent implements OnInit {
   
   isModalOpen = this.FlightService.isModalOpen;
 
-  openModal = this.FlightService.closeFilterModal ;
+  openModal = this.FlightService.openFilterModal ;
 
   closeModal = this.FlightService.closeFilterModal ;
   
