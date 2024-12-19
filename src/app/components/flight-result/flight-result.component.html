@@ -1,0 +1,40 @@
+<mat-drawer-container class="container" autosize>
+  <mat-drawer
+    #drawer
+    class="sidemenu"
+    [mode]="isSmallScreen ? 'over' : 'side'"
+  >
+    <app-filter></app-filter>
+  </mat-drawer>
+
+  <div class="content">
+    <div class="buttons-container">
+      <button
+        type="button"
+        mat-button
+        (click)="drawer.toggle()"
+        class="toggle-button"
+      >
+        <mat-icon *ngIf="!drawer.opened">search</mat-icon> 
+        <ng-container
+          class="image-container"
+          *ngIf="drawer.opened; else filterText"
+        >
+        <mat-icon class="arrow-icon">keyboard_arrow_left</mat-icon>
+        </ng-container>
+        <ng-template #filterText>{{ "SEARCH" | translate }}</ng-template>
+      </button>
+    </div>
+    
+    <app-flight-not-found
+      *ngIf="getFlights().length < 1"
+    ></app-flight-not-found>
+
+    
+    <app-flight-card
+      class="flight-card"
+      *ngFor="let item of getFlights()"
+      [flight]="item"
+    ></app-flight-card>
+  </div>
+</mat-drawer-container>

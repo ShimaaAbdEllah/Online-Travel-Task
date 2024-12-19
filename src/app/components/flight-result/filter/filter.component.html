@@ -1,0 +1,150 @@
+<h1 class="h"> {{ "CAMP_NAME" | translate }} </h1>
+<h1 class="filter-title">
+  <span [ngClass]="{ right: isArabic, left: !isArabic }">
+    {{ "FILTER_BY" | translate }}:
+  </span>
+</h1>
+
+
+<div class="body" [ngClass]="{ rtl: isArabic, ltr: !isArabic }">
+  
+  <h1 class="filter-title">
+    {{ "AIRLINES" | translate }}
+  </h1>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>{{ "AIRLINES" | translate }}</mat-panel-title>
+    </mat-expansion-panel-header>
+    <mat-radio-group class="airlines">
+      <mat-form-field class="example-full-width">
+        <mat-label>Search...</mat-label>
+        <input
+          type="text"
+          [(ngModel)]="search"
+          (input)="handleAirlineChange($event)"
+          (keypress)="preventArabic($event)"
+          matInput
+          placeholder="Search..."
+        />
+      </mat-form-field>
+      <ng-container *ngIf="search">
+        <mat-radio-button
+          *ngFor="let airline of searchArray"
+          [value]="airline"
+          (change)="handleAirlines($event)"
+          class="custom-radio-button"
+        >
+          {{ airline }}
+        </mat-radio-button>
+      </ng-container>
+      <mat-radio-button
+        [value]="'all'"
+        (change)="handleAirlines($event)"
+        class="custom-radio-button"
+      >
+        {{ "ALL" | translate }}
+      </mat-radio-button>
+    </mat-radio-group>
+  </mat-expansion-panel>
+
+  
+<h1 class="filter-title">
+  {{ "PRICE" | translate }}
+</h1>
+
+<mat-expansion-panel>
+  <mat-expansion-panel-header>
+    <mat-panel-title>{{ "PRICE" | translate }}</mat-panel-title>
+  </mat-expansion-panel-header>
+  <div class="price-filter">
+    <mat-form-field class="example-full-width">
+      <mat-label>{{ "MIN_PRICE" | translate }}</mat-label>
+      <input
+        type="number"
+        [(ngModel)]="minPrice"
+        matInput
+        placeholder="{{ 'MIN_PRICE' | translate }}"
+        (change)="handlePriceFilter()"
+      />
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>{{ "MAX_PRICE" | translate }}</mat-label>
+      <input
+        type="number"
+        [(ngModel)]="maxPrice"
+        matInput
+        placeholder="{{ 'MAX_PRICE' | translate }}"
+        (change)="handlePriceFilter()"
+      />
+    </mat-form-field>
+  </div>
+</mat-expansion-panel>
+  
+  <h1 class="filter-title">
+    
+    {{ "STOPS" | translate }}
+  </h1>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>{{ "STOPS" | translate }}</mat-panel-title>
+    </mat-expansion-panel-header>
+    <mat-radio-group>
+      <mat-radio-button
+        class="stop1"
+        [value]="1"
+        (change)="handleStopsChange($event)"
+      >
+        {{ "DIRECT" | translate }}
+      </mat-radio-button>
+      <mat-radio-button
+        class="stop1"
+        [value]="2"
+        (change)="handleStopsChange($event)"
+      >
+        {{ "ONE_STOP" | translate }}
+      </mat-radio-button>
+      <mat-radio-button
+        class="stop1"
+        [value]="-1"
+        (change)="handleStopsChange($event)"
+      >
+        {{ "BOTH" | translate }}
+      </mat-radio-button>
+    </mat-radio-group>
+  </mat-expansion-panel>
+
+  
+  <h1 class="filter-title">
+    
+    {{ "REFUNDABLE_FLIGHTS" | translate }}
+  </h1>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>{{ "REFUNDABLE_FLIGHTS" | translate }}</mat-panel-title>
+    </mat-expansion-panel-header>
+    <mat-radio-group>
+      <mat-radio-button
+        class="refund"
+        [value]="true"
+        (change)="handleRefundChange($event)"
+      >
+        {{ "REFUNDABLE_FLIGHTS" | translate }}
+      </mat-radio-button>
+      <mat-radio-button
+        class="refund"
+        [value]="false"
+        (change)="handleRefundChange($event)"
+      >
+        {{ "NON_REFUNDABLE_FLIGHTS" | translate }}
+      </mat-radio-button>
+      <mat-radio-button
+        class="refund"
+        [value]="null"
+        (change)="handleRefundChange($event)"
+      >
+        {{ "BOTH" | translate }}
+      </mat-radio-button>
+    </mat-radio-group>
+  </mat-expansion-panel>
+</div>

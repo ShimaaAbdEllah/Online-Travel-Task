@@ -1,0 +1,22 @@
+mat-toolbar {
+    background-color: darkblue;
+    display: flex;
+    justify-content: space-between;
+    z-index:10000000000000000000000000000;
+  }
+  
+  .example-spacer {
+    flex: 1 1 auto;
+  }
+  
+  .active-link {
+    background-color: #1976d2; 
+    color: white;
+    font-weight: bold; 
+  }
+  
+  button.mat-button.active-link:hover {
+    background-color: #1565c0; 
+  }
+  
+  

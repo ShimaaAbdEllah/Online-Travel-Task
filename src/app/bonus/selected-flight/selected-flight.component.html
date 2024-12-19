@@ -1,0 +1,72 @@
+<h1>{{ "CAMP_NAME" | translate }}</h1>
+<mat-card class="card">
+  <mat-card-content>
+    
+    
+    <div class="header">
+      <mat-card-title class="card-header">
+        <img
+          [src]="flightDetails.airlineLogo"
+          alt="{{ flightDetails.airName }} logo"
+          class="airline-logo"
+        />
+        {{ flightDetails.airName }}
+        <p class="info-box" style="text-align: center">
+          {{ flightDetails.totalPrice }}
+        </p>
+      </mat-card-title>
+
+     
+      <div class="info-group section1">
+        <mat-card class="info-box">{{ flightDetails.departureCountryName }}</mat-card>
+        <div class="line-group">
+          <span class="circle1"></span>
+          <span class="line">
+            <span class="airPlane-container">
+              <mat-icon class="airPlane">airplanemode_active</mat-icon>
+            </span>
+          </span>
+          <span class="circle2"></span>
+        </div>
+        <mat-card class="info-box">{{ flightDetails.arrivalCountryName }}</mat-card>
+      </div>
+      <div class="info-group">
+        <mat-card class="info-box">{{ flightDetails.departureDate }}</mat-card>
+        <div class="duration-line-container">
+          <span class="duration">{{ flightDetails.duration }}</span>
+        </div>
+        <mat-card class="info-box">{{ flightDetails.arrivalDate }}</mat-card>
+      </div>
+    </div>
+
+    
+    <div class="info-container">
+      <mat-card class="info-box">
+        {{ flightDetails.direction > 1 ? ("CONNECTING_FLIGHT" | translate) : ("DIRECT_FLIGHT" | translate) }}
+      </mat-card>
+      <mat-card class="info-box">
+        {{ 'FLIGHT_NUMBER' | translate }}:{{ flightDetails.flightNumber }}
+      </mat-card>
+      <mat-card class="info-box">
+        {{ 'CABIN_CLASS' | translate }}:{{ flightDetails.cabinClass }}
+      </mat-card>
+      <mat-card class="info-box">
+        {{ 'BAGGAGE_INFO' | translate }}:{{ flightDetails.baggageInfo }}
+      </mat-card>
+      
+      <mat-card class="info-box">
+        {{ 'REFUNDABLE' | translate }}:{{ flightDetails.refund }}
+      </mat-card>
+    </div>
+
+    <div class="modal" *ngIf="isModalOpen">
+      <div class="modal-content">
+        <span class="close" (click)="closeModal()">&times;</span>
+        <h2>{{ "BOOK_YOUR_FLIGHT" | translate }}</h2>
+        <button class="confirm-button" routerLink="/" >{{ "BACK_TO_HOME" | translate }}</button>
+      </div>
+    </div>
+
+      <button class="ac"mat-raised-button color="primary"(click)="openModal()">{{ "BOOK_NOW" | translate }}</button>
+    
+  

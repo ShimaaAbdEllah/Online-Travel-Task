@@ -1,0 +1,11 @@
+<mat-toolbar color="primary">
+    <button mat-button routerLink="/" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">
+      {{ 'HOME' | translate }}
+    </button>
+    <button mat-button routerLink="/flights" routerLinkActive="active-link">
+      {{ 'FLIGHTS' | translate }}
+    </button>
+    <span class="example-spacer"></span>
+    <button mat-button><app-language-toggle></app-language-toggle></button>
+  </mat-toolbar>
+  

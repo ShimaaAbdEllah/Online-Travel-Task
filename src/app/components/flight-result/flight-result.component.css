@@ -1,0 +1,100 @@
+.container {
+  height: 100vh;
+  background-color: #fcfdff;
+}
+
+.sidemenu {
+  background-color:rgb(164, 231, 252);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  transition: width 0.3s ease;
+  height: 100%;
+}
+
+
+.content button {
+  background: darkblue;
+  color: white;
+  position: relative;
+  right: -450px;
+  border: none;
+  border-radius: 8px;
+  padding: 14px 28px;
+  font-size: 1.2rem;
+  
+}
+
+.content {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+
+.app-flight-card {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 15px;
+  width: 100%;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.flight-card {
+  width: 100%;
+}
+
+.app-flight-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7);
+}
+
+
+.buttons-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 50px;
+}
+/* Responsive Design */
+@media (max-width: 771px) {
+  .app-flight-card {
+    max-width: 80%; 
+    margin: 0 auto; 
+  }
+.sidemenu{
+
+  width: 340px;
+}
+  .content button {
+    position: relative;
+    left: 0px;
+    margin: 20px auto;
+    padding: 12px 24px;
+    font-size: 1rem;
+    width: 50%; 
+    text-align: center;
+  }
+
+  .buttons-container {
+    flex-direction: column; 
+    gap: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .app-flight-card {
+    max-width: 90%; 
+    padding: 10px;
+  }
+
+  .content button {
+    width: 100%; 
+    padding: 12px;
+  }
+
+  .buttons-container {
+    gap: 10px;
+  }
+}

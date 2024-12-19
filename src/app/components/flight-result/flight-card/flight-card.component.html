@@ -1,0 +1,47 @@
+<mat-card class="card">
+  <mat-card-content>
+    <div class="header">
+      <mat-card-title class="card-header">
+        <img
+          [src]="flight.allJourney.flights[0].flightAirline.airlineLogo"
+          alt="{{ cardData.airName }} logo"
+          class="airline-logo"
+        />
+        {{ cardData.airName }}
+        <p class="info-box" style="text-align: center">
+          {{ cardData.totalPrice }}
+        </p>
+        
+      </mat-card-title>
+
+      <div class="info-group section1">
+        <mat-card class="info-box">{{
+          cardData.departureCountryName
+        }}</mat-card>
+        <div class="line-group">
+          <span class="circle1"></span>
+          <span class="line">
+            <span class="airPlane-container">
+              <mat-icon class="airPlane">airplanemode_active</mat-icon>
+            </span>
+          </span>
+          <span class="circle2"></span>
+        </div>
+        <mat-card class="info-box">{{ cardData.arrivalCountryName }}</mat-card>
+      </div>
+      <div class="info-group">
+        <mat-card class="info-box">{{ cardData.departureDate }}</mat-card>
+        <div class="duration-line-container">
+          
+          <span class="duration" >{{ cardData.duration }}</span>
+        </div>
+        <mat-card class="info-box">{{ cardData.arrivalDate }}</mat-card>
+      </div>
+    </div>
+
+  
+    <button class="ac" mat-raised-button color="primary" (click)="handleSelectedFlight()">
+      {{ "FLIGHT_DETAILS" | translate }}
+    </button>
+    
+  

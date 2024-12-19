@@ -1,0 +1,140 @@
+.h {
+  font-size: 4rem;
+  margin-top: 50px;
+  font-weight: bold;
+  color: white; 
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+  text-align: center;
+}
+.filter-title{
+  color: white;
+ 
+}
+
+.mat-accordion {
+  background-color: #ffffff; 
+  color: #e5e7ee; 
+}
+
+
+.mat-expansion-panel {
+  background-color: #f4f4f4; 
+  margin: 20px 15px;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  width: 350px;
+}
+
+
+.mat-expansion-panel-header-title {
+  color: #333;
+}
+
+
+
+.mat-form-field {
+  width: 100%;
+  margin: 10px 0;
+  background-color: #f4f4f4; 
+  border-radius: 20px;
+}
+
+
+
+.mat-form-field .mat-label {
+  color: #6b7280; 
+}
+
+
+
+
+.custom-radio-button {
+  background-color: #ffffff; 
+  color: #1e3a8a; 
+  border-radius: 8px;
+  margin: 5px;
+}
+
+.stop1,
+.refund {
+  background-color: #ffffff; 
+  color: #1e3a8a; 
+  border-radius: 8px;
+  margin: 5px;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+}
+
+mat-checkbox:hover,
+mat-radio-button:hover {
+  background-color: rgb(164, 231, 252);
+
+}
+  
+
+
+button.mat-raised-button {
+  background-color: #3b82f6; 
+  color: white;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+button.mat-raised-button:hover {
+  background-color: #2563eb; 
+  transform: scale(1.05);
+}
+
+
+
+
+
+.filter-title {
+  color: #3b82f6; 
+}
+
+.filter-title span {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #1e3a8a; 
+}
+
+.right {
+  margin-right: 1rem;
+}
+
+.left {
+  margin-left: 1rem;
+}
+
+
+.airlines {
+  display: flex;
+  flex-direction: column;
+}
+
+
+@media (max-width: 768px) {
+  .mat-expansion-panel {
+    width: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .mat-expansion-panel {
+    width: 300px;
+  }
+}
+
+
+.rtl {
+  direction: rtl;
+  text-align: right;
+}
+
+.ltr {
+  direction: ltr;
+  text-align: left;
+}

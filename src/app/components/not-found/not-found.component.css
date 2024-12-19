@@ -1,0 +1,7 @@
+.not-found-container {
+  height: 100vh;
+  background: url('../../../assets/404-status-code.png') no-repeat center center;
+  background-size: cover; 
+  
+}
+
