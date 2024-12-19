@@ -69,26 +69,26 @@ export class FlightService {
         0
       );
 
-      return { ...flight, totalPrice }; // Return the flight with added total price
+      return { ...flight, totalPrice }; 
     });
   }
 
   // Filter flights by refund status
   filterRefund(refund: boolean) {
     this.filterByRefund = refund;
-    this.filterAll(); // Apply the filter
+    this.filterAll();
   }
 
   // Filter flights by number of stops
   filterStops(stops: number) {
     this.filterByStops = stops;
-    this.filterAll(); // Apply the filter
+    this.filterAll(); 
   }
 
   // Filter flights by airline
   filterAirlines(airline: string) {
     this.filterByAirlines = airline;
-    this.filterAll(); // Apply the filter
+    this.filterAll(); 
   }
 
   // Calculate total price in EGP based on fare amounts and currency
@@ -105,18 +105,18 @@ export class FlightService {
     flightData.passengerFareBreakDownDTOs.forEach((passenger) => {
       passenger.flightFaresDTOs.forEach((fare) => {
         const currency = fare.currencyCode as CurrencyCode;
-        const rate = conversionRates[currency] || 1; // Default to 1 if currency is unrecognized
+        const rate = conversionRates[currency] || 1; 
         totalEGP += fare.fareAmount * rate;
       });
     });
 
-    return totalEGP; // Return total price in EGP
+    return totalEGP; 
   }
 
   // Filter flights by a price range
   filterByPrice(minPrice: number, maxPrice: number): void {
     this.flights = this.copyFlights.map((flight) => {
-      const totalEGP = this.calculateTotalPriceInEGP(flight); // Calculate price in EGP
+      const totalEGP = this.calculateTotalPriceInEGP(flight); 
       return { ...flight, totalPrice: totalEGP };  
     });
 
@@ -130,20 +130,23 @@ export class FlightService {
   }
 
   // Apply all active filters
-  filterAll() {
+  filterAll(minPrice?: number, maxPrice?: number): void {
     this.flights = this.copyFlights.filter((flight) => {
+       // Filter by refund status
       if (
         this.filterByRefund !== null &&
         flight.isRefundable !== this.filterByRefund
       ) {
         return false;
       }
+        // Filter by number of stops
       if (
         this.filterByStops !== -1 &&
         flight.allJourney.flights[0].flightDTO.length !== this.filterByStops
       ) {
         return false;
       }
+        // Filter by airline
       if (
         this.filterByAirlines !== 'all' &&
         flight.allJourney.flights[0].flightAirline.airlineName !==
@@ -151,6 +154,14 @@ export class FlightService {
       ) {
         return false;
       }
+       // Filter by price range if minPrice and maxPrice are defined
+    if (minPrice !== undefined && maxPrice !== undefined) {
+      const totalEGP = this.calculateTotalPriceInEGP(flight); 
+      if (totalEGP < minPrice || totalEGP > maxPrice) {
+        return false;
+      }
+    }
+      
       return true; // Return only the flights matching all filters
     });
   }
@@ -159,9 +170,9 @@ export class FlightService {
   findFlightById(id: number) {
     const flight = this.copyFlights.find((flight) => flight.sequenceNum === id);
     if (flight) {
-      localStorage.setItem('selectedFlight', JSON.stringify(flight)); // Store selected flight in localStorage
+      localStorage.setItem('selectedFlight', JSON.stringify(flight)); 
     }
-    return flight; // Return the selected flight
+    return flight; 
   }
 
   // Retrieve the selected flight from localStorage
