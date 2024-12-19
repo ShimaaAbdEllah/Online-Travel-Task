@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AirItineraries } from '../../models/flights';
 import { Router } from '@angular/router';
-import { catchError, Observable, of, throwError } from 'rxjs'; 
+import { catchError, of} from 'rxjs'; 
 
 
 type CurrencyCode = 'EGP' | 'KWD' | 'SAR' | 'USD';
@@ -25,31 +25,39 @@ export class FlightService {
   private LOCAL_STORAGE_KEY = 'flightData'; 
 
   // Load flight data from localStorage or API
-  loadFlightData(): Observable<{ airItineraries: AirItineraries[]; airlines: string[] }> {
-    const savedData = localStorage.getItem(this.LOCAL_STORAGE_KEY);
-    if (savedData) {
-      const parsedData = JSON.parse(savedData);
-      this.flights = this.addTotalPrice(parsedData.airItineraries); 
-      this.copyFlights = this.flights;
+  loadFlightData() {
+    const storedData = localStorage.getItem(this.LOCAL_STORAGE_KEY);
+    if (storedData) {
+      const parsedData = JSON.parse(storedData);
+      this.flights = parsedData.airItineraries;
+      this.copyFlights = parsedData.airItineraries;
       this.airlines = parsedData.airlines;
-      return of({ airItineraries: this.flights, airlines: this.airlines }); 
+      return;
     }
 
-    // If no data in localStorage, fetch from the API
-    return this.http
+    this.http
       .get<{ airItineraries: AirItineraries[]; airlines: string[] }>(
         '../../../assets/response.json'
       )
       .pipe(
         catchError((error) => {
           console.error('Error fetching flight data:', error);
-          return throwError(() => new Error('Error fetching flight data')); 
+          return of({ airItineraries: [], airlines: [] });
         })
+      )
+      .subscribe(
+        (data: { airItineraries: AirItineraries[]; airlines: string[] }) => {
+          this.flights = data.airItineraries;
+          this.copyFlights = data.airItineraries;
+          this.airlines = data.airlines;
+          localStorage.setItem(this.LOCAL_STORAGE_KEY, JSON.stringify(data));
+        }
       );
   }
 
+
   // Add total price to flight
-  private addTotalPrice(flights: AirItineraries[]): AirItineraries[] {
+  addTotalPrice(flights: AirItineraries[]): AirItineraries[] {
     return flights.map((flight) => {
       const totalPrice = flight.passengerFareBreakDownDTOs.reduce(
         (total, passenger) =>
